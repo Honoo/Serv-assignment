@@ -1,0 +1,15 @@
+<h3>{{ months[month].name }} {{ year }}</h3>
+<table>
+  <tr>
+    <th>Sun</th>
+    <th>Mon</th>
+    <th>Tue</th>
+    <th>Wed</th>
+    <th>Thu</th>
+    <th>Fri</th>
+    <th>Sat</th>
+  </tr>
+  <tr ng-repeat="week in weeks">
+    <td ng-repeat="day in week.days">{{ day.date }}</td>
+  </tr>
+</table>
