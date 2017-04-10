@@ -1,0 +1,1 @@
+An AngularJS app for Serv's front-end assignment.
