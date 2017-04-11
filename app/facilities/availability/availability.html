@@ -4,8 +4,8 @@
     Meeting Room A
     <button ng-click="toggleDisplay('roomA')">Toggle Display</button>
     <ul ng-show="display.roomA">
-      <li ng-repeat="(time, isBooked) in timeslots.roomA[dateString]">
-        {{ time + ".00"}}
+      <li ng-repeat="(time, isBooked) in timeslots.roomA[dateString]" ng-if="!timeslots.roomA[dateString][time]">
+        {{ time + ".00"}} <button>Book</button>
       </li>
     </ul>
   </div>
@@ -13,8 +13,8 @@
     Meeting Room B
     <button ng-click="toggleDisplay('roomB')">Toggle Display</button>
     <ul ng-show="display.roomB">
-      <li ng-repeat="(time, isBooked) in timeslots.roomB[dateString]">
-        {{ time + ".00"}}
+      <li ng-repeat="(time, isBooked) in timeslots.roomB[dateString]" ng-if="!timeslots.roomB[dateString][time]">
+        {{ time + ".00"}} <button>Book</button>
       </li>
     </ul>
   </div>
@@ -22,8 +22,8 @@
     Meeting Point Space A
     <button ng-click="toggleDisplay('spaceA')">Toggle Display</button>
     <ul ng-show="display.spaceA">
-      <li ng-repeat="(time, isBooked) in timeslots.spaceA[dateString]">
-        {{ time + ".00"}}
+      <li ng-repeat="(time, isBooked) in timeslots.spaceA[dateString]" ng-if="!timeslots.spaceA[dateString][time]">
+        {{ time + ".00"}} <button>Book</button>
       </li>
     </ul>
   </div>
@@ -31,22 +31,26 @@
     Meeting Point Space B
     <button ng-click="toggleDisplay('spaceB')">Toggle Display</button>
     <ul ng-show="display.spaceB">
-      <li ng-repeat="(time, isBooked) in timeslots.spaceB[dateString]">
-        {{ time + ".00"}}
+      <li ng-repeat="(time, isBooked) in timeslots.spaceB[dateString]" ng-if="!timeslots.spaceB[dateString][time]">
+        {{ time + ".00"}} <button>Book</button>
       </li>
     </ul>
   </div>
   <div>
     Full (Space A + B)
-    <ul>
+    <button ng-click="toggleDisplay('full')">Toggle Display</button>
+    <ul ng-show="display.full">
+      <li ng-repeat="(time, isBooked) in timeslots.spaceA[dateString]" ng-if="!timeslots.spaceA[dateString][time] && !timeslots.spaceB[dateString][time]">
+        {{ time + ".00"}} <button>Book</button>
+      </li>
     </ul>
   </div>
   <div>
     Basketball Court
     <button ng-click="toggleDisplay('court')">Toggle Display</button>
     <ul ng-show="display.court">
-      <li ng-repeat="(time, isBooked) in timeslots.court[dateString]">
-        {{ time + ".00"}}
+      <li ng-repeat="(time, isBooked) in timeslots.court[dateString]" ng-if="!timeslots.court[dateString][time]">
+        {{ time + ".00"}} <button>Book</button>
       </li>
     </ul>
   </div>

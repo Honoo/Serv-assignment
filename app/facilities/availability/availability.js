@@ -6,13 +6,15 @@ angular.module('facilitiesModule.availability',[])
   }
 })
 .controller("AvailabilityController", ['$scope', 'availabilityFactory', function($scope, availabilityFactory){
-  $scope.display = {};
-  $scope.display.availability = true;
-  $scope.display.roomA = false;
-  $scope.display.roomB = false;
-  $scope.display.spaceA = false;
-  $scope.display.spaceB = false;
-  $scope.display.court = false;
+  $scope.display = {
+    availability: true,
+    roomA: false,
+    roomB: false,
+    spaceA: false,
+    spaceB: false,
+    full: false,
+    court: false
+  };
 
   $scope.toggleDisplay = function(type){
     $scope.display[type] = !$scope.display[type];
@@ -32,5 +34,4 @@ angular.module('facilitiesModule.availability',[])
   }
 
   $scope.timeslots = availabilityFactory.spaces;
-
 }]);
