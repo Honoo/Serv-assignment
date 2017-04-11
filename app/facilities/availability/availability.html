@@ -1,0 +1,48 @@
+<div ng-show="{{ display }}">
+  <h4>Available Timeslots:</h4>
+  <span>
+    Meeting Room A
+    <ul>
+      <li ng-repeat="(time, isBooked) in timeslots.roomA[dateString]">
+        {{ time + ".00"}}
+      </li>
+    </ul>
+  </span>
+  <span>
+    Meeting Room B
+    <ul>
+      <li ng-repeat="(time, isBooked) in timeslots.roomB[dateString]">
+        {{ time + ".00"}}
+      </li>
+    </ul>
+  </span>
+  <span>
+    Meeting Point Space A
+    <ul>
+      <li ng-repeat="(time, isBooked) in timeslots.spaceA[dateString]">
+        {{ time + ".00"}}
+      </li>
+    </ul>
+  </span>
+  <span>
+    Meeting Point Space B
+    <ul>
+      <li ng-repeat="(time, isBooked) in timeslots.spaceB[dateString]">
+        {{ time + ".00"}}
+      </li>
+    </ul>
+  </span>
+  <span>
+    Full (Space A + B)
+    <ul>
+    </ul>
+  </span>
+  <span>
+    Basketball Court
+    <ul>
+      <li ng-repeat="(time, isBooked) in timeslots.court[dateString]">
+        {{ time + ".00"}}
+      </li>
+    </ul>
+  </span>
+</div>

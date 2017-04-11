@@ -11,8 +11,6 @@ angular.module('calendarModule',[])
     $scope.year = now.getFullYear();
     $scope.month = now.getMonth();
     $scope.day = now.getDate();
-    var firstDay = new Date($scope.year, $scope.month, 1);
-    $scope.firstDay = firstDay.getDay();
 
     $scope.weeks = getWeeks($scope, $scope.year, $scope.month);
   }
@@ -81,7 +79,7 @@ angular.module('calendarModule',[])
         return true;
       }
       else if(year%100 == 0){
-        return false
+        return false;
       }
       else {
         return true;
