@@ -1,48 +1,53 @@
-<div ng-show="{{ display }}">
+<div ng-show="{{ display.availability }}">
   <h4>Available Timeslots:</h4>
-  <span>
+  <div>
     Meeting Room A
-    <ul>
+    <button ng-click="toggleDisplay('roomA')">Toggle Display</button>
+    <ul ng-show="display.roomA">
       <li ng-repeat="(time, isBooked) in timeslots.roomA[dateString]">
         {{ time + ".00"}}
       </li>
     </ul>
-  </span>
-  <span>
+  </div>
+  <div>
     Meeting Room B
-    <ul>
+    <button ng-click="toggleDisplay('roomB')">Toggle Display</button>
+    <ul ng-show="display.roomB">
       <li ng-repeat="(time, isBooked) in timeslots.roomB[dateString]">
         {{ time + ".00"}}
       </li>
     </ul>
-  </span>
-  <span>
+  </div>
+  <div>
     Meeting Point Space A
-    <ul>
+    <button ng-click="toggleDisplay('spaceA')">Toggle Display</button>
+    <ul ng-show="display.spaceA">
       <li ng-repeat="(time, isBooked) in timeslots.spaceA[dateString]">
         {{ time + ".00"}}
       </li>
     </ul>
-  </span>
-  <span>
+  </div>
+  <div>
     Meeting Point Space B
-    <ul>
+    <button ng-click="toggleDisplay('spaceB')">Toggle Display</button>
+    <ul ng-show="display.spaceB">
       <li ng-repeat="(time, isBooked) in timeslots.spaceB[dateString]">
         {{ time + ".00"}}
       </li>
     </ul>
-  </span>
-  <span>
+  </div>
+  <div>
     Full (Space A + B)
     <ul>
     </ul>
-  </span>
-  <span>
+  </div>
+  <div>
     Basketball Court
-    <ul>
+    <button ng-click="toggleDisplay('court')">Toggle Display</button>
+    <ul ng-show="display.court">
       <li ng-repeat="(time, isBooked) in timeslots.court[dateString]">
         {{ time + ".00"}}
       </li>
     </ul>
-  </span>
+  </div>
 </div>

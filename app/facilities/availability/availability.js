@@ -6,7 +6,18 @@ angular.module('facilitiesModule.availability',[])
   }
 })
 .controller("AvailabilityController", ['$scope', 'availabilityFactory', function($scope, availabilityFactory){
-  $scope.display = true;
+  $scope.display = {};
+  $scope.display.availability = true;
+  $scope.display.roomA = false;
+  $scope.display.roomB = false;
+  $scope.display.spaceA = false;
+  $scope.display.spaceB = false;
+  $scope.display.court = false;
+
+  $scope.toggleDisplay = function(type){
+    $scope.display[type] = !$scope.display[type];
+  }
+
   $scope.year = 2017;
   $scope.month = 3;
   $scope.day = 11;
