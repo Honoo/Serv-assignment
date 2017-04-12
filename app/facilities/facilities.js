@@ -1,3 +1,4 @@
 angular.module('facilitiesModule',[
-  'facilitiesModule.availability'
+  'facilitiesModule.availability',
+  'facilitiesModule.rates'
 ]);

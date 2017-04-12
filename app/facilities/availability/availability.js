@@ -5,8 +5,8 @@ angular.module('facilitiesModule.availability',[])
     templateUrl: 'app/facilities/availability/availability.html',
   }
 })
-.controller("AvailabilityController", ['$scope', 'availabilityFactory', 'calendarFactory', 
-  function($scope, availabilityFactory, calendarFactory){
+.controller("AvailabilityController", ['$scope', 'availabilityFactory', 'calendarFactory', 'ratesFactory',
+  function($scope, availabilityFactory, calendarFactory, ratesFactory){
     $scope.locations = ['roomA', 'roomB', 'spaceA', 'spaceB', 'full', 'court'];
 
     $scope.display = {
@@ -26,15 +26,17 @@ angular.module('facilitiesModule.availability',[])
     $scope.dateString = availabilityFactory.createDateFormat;
     $scope.startTime = availabilityFactory.startTime;
     $scope.endTime = availabilityFactory.endTime;
-
-    // Initialize all timeslots for the current date
-    for(space in availabilityFactory.spaces){
-      availabilityFactory.checkDate(space, $scope.year(), $scope.month(), $scope.day());
-    }
-
     $scope.timeslots = availabilityFactory.spaces;
     $scope.getSlots = availabilityFactory.getSlots;
     $scope.bookSlot = availabilityFactory.bookSlot;
+
+    $scope.getRates = ratesFactory.getRates;
+
+    // Initialize all timeslots for the current date
+    // for(space in availabilityFactory.spaces){
+    //   availabilityFactory.checkDate(space, $scope.year(), $scope.month(), $scope.day());
+    // }
+
     $scope.durations = {};
   }
 ]);
