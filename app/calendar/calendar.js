@@ -7,7 +7,7 @@ angular.module('calendarModule',[])
   }
 
   function link($scope, element, attrs){
-    $scope.weeks = getWeeks($scope, $scope.year, $scope.month);
+    $scope.weeks = getWeeks($scope, $scope.year(), $scope.month());
   }
 
   // Formats calendar elements
@@ -41,18 +41,13 @@ angular.module('calendarModule',[])
     return weeks;
   }
 })
-.controller("CalendarController", ['$scope', function($scope){
+.controller("CalendarController", ['$scope', 'calendarFactory', function($scope, calendarFactory){
   // Initialize calendar to current month
-  var now = new Date();
-  $scope.year = now.getFullYear();
-  $scope.month = now.getMonth();
-  $scope.day = now.getDate();
+  $scope.year = calendarFactory.getYear;
+  $scope.month = calendarFactory.getMonth;
+  $scope.day = calendarFactory.getDay;
 
-  $scope.changeDate = function(year, month, day){
-    $scope.year = parseInt(year);
-    $scope.month = parseInt(month);
-    $scope.day = parseInt(day);
-  }
+  $scope.changeDate = calendarFactory.changeDate;
 
   $scope.months = [
                     {name: 'January', short: 'Jan', days: 31},

@@ -1,4 +1,4 @@
-<h3>{{ months[month].name }} {{ year }}</h3>
+<h3>{{ months[month()].name }} {{ year() }}</h3>
 <table>
   <tr>
     <th>Sun</th>
@@ -11,7 +11,7 @@
   </tr>
   <tr ng-repeat="week in weeks">
     <td ng-repeat="day in week.days">
-      <button ng-if="day.date" ng-click="changeDate(year, month, day.date)">{{ day.date }}</button>
+      <button ng-if="day.date" ng-click="changeDate(year(), month(), day.date)">{{ day.date }}</button>
     </td>
   </tr>
 </table>
