@@ -1,61 +1,16 @@
 <div ng-show="{{ display.availability }}">
   <h4>Available Timeslots for {{day()}}-{{month()+1}}-{{year()}}:</h4>
-  <div>
-    Meeting Room A
-    <button ng-click="display.roomA=!display.roomA">Toggle Display</button>
-    <ul ng-show="display.roomA">
-      <li ng-repeat="(time, isBooked) in getSlots('roomA', year(), month(), day())" ng-if="!timeslots.roomA[dateString(year(), month(), day())][time]">
+  <div ng-repeat="location in locations">
+    {{ location.title }}
+    <button ng-click="display[location.short]=!display[location.short]">Toggle Display</button>
+    <ul ng-show="display[location.short]">
+      <li ng-repeat="(time, isBooked) in getSlots(location.short, year(), month(), day())" ng-if="!timeslots[location.short][dateString(year(), month(), day())][time]">
         {{ time + ".00"}} 
-        <button ng-click="display.booking.roomA[startTime+$index]=!display.booking.roomA[startTime+$index]">Book</button>
-        <div ng-show="display.booking.roomA[startTime+$index]">
-          Number of hours (${{ getRates('roomA').price }} per {{ getRates('roomA').hours }} hour(s)):
-          <input type="number" min="1" max="{{ endTime - (startTime + $index) }}" ng-model="durations.roomA"/>
-          <button ng-click="bookSlot('roomA', year(), month(), day(), time, durations.roomA)">Confirm</button>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div>
-    Meeting Room B
-    <button ng-click="display.roomB=!display.roomB">Toggle Display</button>
-    <ul ng-show="display.roomB">
-      <li ng-repeat="(time, isBooked) in getSlots('roomB', year(), month(), day())" ng-if="!timeslots.roomB[dateString(year(), month(), day())][time]">
-        {{ time + ".00"}}
-        <button ng-click="display.booking.roomB[startTime+$index]=!display.booking.roomB[startTime+$index]">Book</button>
-        <div ng-show="display.booking.roomB[startTime+$index]">
-          Number of hours (${{ getRates('roomB').price }} per {{ getRates('roomB').hours }} hour(s)):
-          <input type="number" min="1" max="{{ endTime - (startTime + $index) }}" ng-model="durations.roomB"/>
-          <button ng-click="bookSlot('roomB', year(), month(), day(), time, durations.roomB)">Confirm</button>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div>
-    Meeting Point Space A
-    <button ng-click="display.spaceA=!display.spaceA">Toggle Display</button>
-    <ul ng-show="display.spaceA">
-      <li ng-repeat="(time, isBooked) in getSlots('spaceA', year(), month(), day())" ng-if="!timeslots.spaceA[dateString(year(), month(), day())][time]">
-        {{ time + ".00"}}
-        <button ng-click="display.booking.spaceA[startTime+$index]=!display.booking.spaceA[startTime+$index]">Book</button>
-        <div ng-show="display.booking.spaceA[startTime+$index]">
-          Number of hours (${{ getRates('spaceA').price }} per {{ getRates('spaceA').hours }} hour(s)):
-          <input type="number" min="1" max="{{ endTime - (startTime + $index) }}" ng-model="durations.spaceA"/>
-          <button ng-click="bookSlot('spaceA', year(), month(), day(), time, durations.spaceA)">Confirm</button>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div>
-    Meeting Point Space B
-    <button ng-click="display.spaceB=!display.spaceB">Toggle Display</button>
-    <ul ng-show="display.spaceB">
-      <li ng-repeat="(time, isBooked) in getSlots('spaceB', year(), month(), day())" ng-if="!timeslots.spaceB[dateString(year(), month(), day())][time]">
-        {{ time + ".00"}}
-        <button ng-click="display.booking.spaceB[startTime+$index]=!display.booking.spaceB[startTime+$index]">Book</button>
-        <div ng-show="display.booking.spaceB[startTime+$index]">
-          Number of hours (${{ getRates('spaceB').price }} per {{ getRates('spaceB').hours }} hour(s)):
-          <input type="number" min="1" max="{{ endTime - (startTime + $index) }}" ng-model="durations.spaceB"/>
-          <button ng-click="bookSlot('spaceB', year(), month(), day(), time, durations.spaceB)">Confirm</button>
+        <button ng-click="display.booking[location.short][startTime+$index]=!display.booking[location.short][startTime+$index]">Book</button>
+        <div ng-show="display.booking[location.short][startTime+$index]">
+          Number of hours (${{ getRates(location.short).price }} per {{ getRates(location.short).hours }} hour(s)):
+          <input type="number" min="1" max="{{ endTime - (startTime + $index) }}" ng-model="durations[location.short]"/>
+          <button ng-click="bookSlot(location.short, year(), month(), day(), time, durations[location.short])">Confirm</button>
         </div>
       </li>
     </ul>

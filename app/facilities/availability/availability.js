@@ -7,16 +7,26 @@ angular.module('facilitiesModule.availability',[])
 })
 .controller("AvailabilityController", ['$scope', 'availabilityFactory', 'calendarFactory', 'ratesFactory',
   function($scope, availabilityFactory, calendarFactory, ratesFactory){
-    $scope.locations = ['roomA', 'roomB', 'spaceA', 'spaceB', 'full', 'court'];
+    $scope.locations = [
+      {short: 'roomA', title: 'Meeting Room A'}, 
+      {short: 'roomB', title: 'Meeting Room B'}, 
+      {short: 'spaceA', title: 'Meeting Point Space A'}, 
+      {short: 'spaceB', title: 'Meeting Point Space B'}
+    ];
 
     $scope.display = {
       availability: true,
-      booking: {}
+      full: false,
+      court: false,
+      booking: {
+        full: false,
+        court: false,
+      }
     };
 
     for(item in $scope.locations){
-      $scope.display[item] = false;
-      $scope.display.booking[item] = false;
+      $scope.display[item.short] = false;
+      $scope.display.booking[item.short] = false;
     }
 
     $scope.year = calendarFactory.getYear;
@@ -31,11 +41,6 @@ angular.module('facilitiesModule.availability',[])
     $scope.bookSlot = availabilityFactory.bookSlot;
 
     $scope.getRates = ratesFactory.getRates;
-
-    // Initialize all timeslots for the current date
-    // for(space in availabilityFactory.spaces){
-    //   availabilityFactory.checkDate(space, $scope.year(), $scope.month(), $scope.day());
-    // }
 
     $scope.durations = {};
   }
