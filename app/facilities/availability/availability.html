@@ -1,5 +1,5 @@
 <div ng-show="{{ display.availability }}">
-  <h4>Available Timeslots:</h4>
+  <h4>Available Timeslots for {{day}}-{{month+1}}-{{year}}:</h4>
   <div>
     Meeting Room A
     <button ng-click="display.roomA=!display.roomA">Toggle Display</button>
@@ -84,7 +84,7 @@
         <button ng-click="display.booking.court[startTime+$index]=!display.booking.court[startTime+$index]">Book</button>
         <div ng-show="display.booking.court[startTime+$index]">
           Number of hours:
-          <input type="number" min="2" max="{{ endTime - (startTime + $index) }}" ng-model="durations.court"/>
+          <input type="number" min="2" max="{{ endTime - (startTime + $index) }}" step="2" ng-model="durations.court"/>
           <button ng-click="bookSlot('court', year, month, day, time, durations.court)">Confirm</button>
         </div>
       </li>
