@@ -7,11 +7,6 @@ angular.module('calendarModule',[])
   }
 
   function link($scope, element, attrs){
-    var now = new Date();
-    $scope.year = now.getFullYear();
-    $scope.month = now.getMonth();
-    $scope.day = now.getDate();
-
     $scope.weeks = getWeeks($scope, $scope.year, $scope.month);
   }
 
@@ -46,6 +41,17 @@ angular.module('calendarModule',[])
   }
 })
 .controller("CalendarController", ['$scope', function($scope){
+  var now = new Date();
+  $scope.year = now.getFullYear();
+  $scope.month = now.getMonth();
+  $scope.day = now.getDate();
+
+  $scope.changeDate = function(year, month, day){
+    $scope.year = parseInt(year);
+    $scope.month = parseInt(month);
+    $scope.day = parseInt(day);
+  }
+
   $scope.months = [
                     {name: 'January', short: 'Jan', days: 31},
                     {name: 'February', short: 'Feb', days: 28},

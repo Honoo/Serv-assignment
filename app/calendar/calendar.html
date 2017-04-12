@@ -10,6 +10,8 @@
     <th>Sat</th>
   </tr>
   <tr ng-repeat="week in weeks">
-    <td ng-repeat="day in week.days">{{ day.date }}</td>
+    <td ng-repeat="day in week.days">
+      <button ng-if="day.date" ng-click="changeDate(year, month, day.date)">{{ day.date }}</button>
+    </td>
   </tr>
 </table>
