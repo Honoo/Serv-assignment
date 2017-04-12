@@ -43,5 +43,27 @@ angular.module('facilitiesModule.availability',[])
     $scope.getRates = ratesFactory.getRates;
 
     $scope.durations = {};
+
+    $scope.isValidFullSlot = function(startTime){
+      return true;
+    };
+
+    $scope.isValidCourtSlot = function(startTime){
+      startTime = parseInt(startTime);
+      var date = $scope.dateString($scope.year(), $scope.month(), $scope.day());
+      var hours = $scope.getRates('court').hours;
+
+      if(startTime + hours > $scope.endTime){
+        return false;
+      }
+
+      for(i = 0; i <= hours; i++){
+        if($scope.timeslots.court[date][startTime+i]){
+          return false;
+        }
+      }
+
+      return true;
+    };
   }
 ]);

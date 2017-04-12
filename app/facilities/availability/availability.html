@@ -34,7 +34,7 @@
     Basketball Court
     <button ng-click="display.court=!display.court">Toggle Display</button>
     <ul ng-show="display.court">
-      <li ng-repeat="(time, isBooked) in getSlots('court', year(), month(), day())" ng-if="!timeslots.court[dateString(year(), month(), day())][time]">
+      <li ng-repeat="(time, isBooked) in getSlots('court', year(), month(), day())" ng-if="isValidCourtSlot(time)">
         {{ time + ".00"}}
         <button ng-click="display.booking.court[startTime+$index]=!display.booking.court[startTime+$index]">Book</button>
         <div ng-show="display.booking.court[startTime+$index]">
