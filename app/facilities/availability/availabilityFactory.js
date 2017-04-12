@@ -36,6 +36,12 @@ angular.module('facilitiesModule.availability')
     return timeslots.spaces[location][date][time];
   };
 
+  timeslots.getSlots = function(location, year, month, day){
+    timeslots.checkDate(location, year, month, day);
+    var date = timeslots.createDateFormat(year, month, day);
+    return timeslots.spaces[location][date];
+  }
+
   // Duration should be an integer representing hours
   timeslots.bookSlot = function(location, year, month, day, time, duration){
     var date = timeslots.createDateFormat(year, month, day);
