@@ -10,6 +10,7 @@ angular.module('calendarModule',[])
     $scope.weeks = getWeeks($scope, $scope.year, $scope.month);
   }
 
+  // Formats calendar elements
   function getWeeks($scope, year, month){
     var weeks = [];
     var totalDays = $scope.months[month].days;
@@ -41,6 +42,7 @@ angular.module('calendarModule',[])
   }
 })
 .controller("CalendarController", ['$scope', function($scope){
+  // Initialize calendar to current month
   var now = new Date();
   $scope.year = now.getFullYear();
   $scope.month = now.getMonth();
