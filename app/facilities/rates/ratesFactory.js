@@ -1,3 +1,4 @@
+// Maintain information about facilities
 angular.module('facilitiesModule.rates',[])
 .factory('ratesFactory', function() {
   var ratesFactory = {};

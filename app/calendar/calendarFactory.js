@@ -1,3 +1,4 @@
+// Maintain a common date
 angular.module('calendarModule')
 .factory('calendarFactory', function() {
   var calendarFactory = {};

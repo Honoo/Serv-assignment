@@ -1,3 +1,4 @@
+// Maintain information about timeslots
 angular.module('facilitiesModule.availability')
 .factory('availabilityFactory', function() {
   var timeslots = {};
@@ -12,6 +13,14 @@ angular.module('facilitiesModule.availability')
 
   timeslots.startTime = 8; //8am
   timeslots.endTime = 22; // 10pm
+
+  timeslots.getStartTime = function(){
+    return timeslots.startTime;
+  }
+
+  timeslots.getEndTime = function(){
+    return timeslots.endTime;
+  }
 
   timeslots.createDateFormat = function(year, month, day){
     return year.toString() + "-" + month.toString() + "-" + day.toString();

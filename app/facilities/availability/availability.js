@@ -1,3 +1,4 @@
+// Directive for displaying and booking available timeslots
 angular.module('facilitiesModule.availability',[])
 .directive('availability',function(){
   return {
@@ -34,8 +35,8 @@ angular.module('facilitiesModule.availability',[])
     $scope.day = calendarFactory.getDay;
 
     $scope.dateString = availabilityFactory.createDateFormat;
-    $scope.startTime = availabilityFactory.startTime;
-    $scope.endTime = availabilityFactory.endTime;
+    $scope.startTime = availabilityFactory.getStartTime;
+    $scope.endTime = availabilityFactory.getEndTime;
     $scope.timeslots = availabilityFactory.spaces;
     $scope.getSlots = availabilityFactory.getSlots;
     $scope.bookSlot = availabilityFactory.bookSlot;
@@ -44,26 +45,31 @@ angular.module('facilitiesModule.availability',[])
 
     $scope.durations = {};
 
-    $scope.isValidFullSlot = function(startTime){
-      return true;
-    };
-
-    $scope.isValidCourtSlot = function(startTime){
+    $scope.isValidSlot = function(location, startTime){
       startTime = parseInt(startTime);
       var date = $scope.dateString($scope.year(), $scope.month(), $scope.day());
-      var hours = $scope.getRates('court').hours;
 
-      if(startTime + hours > $scope.endTime){
+      if(location == 'full' && ($scope.timeslots.spaceA[date][startTime] || $scope.timeslots.spaceB[date][startTime])){
+        return false;
+      }
+      else if(location == 'court'){
+        var hours = $scope.getRates('court').hours;
+
+        if(startTime + hours > $scope.endTime()){
+          return false;
+        }
+
+        for(i = 0; i < hours; i++){
+          if($scope.timeslots.court[date][startTime+i]){
+            return false;
+          }
+        }
+      }
+      else if(location != 'court' && location != 'full' && $scope.timeslots[location][date][startTime]){
         return false;
       }
 
-      for(i = 0; i <= hours; i++){
-        if($scope.timeslots.court[date][startTime+i]){
-          return false;
-        }
-      }
-
       return true;
-    };
+    }
   }
 ]);
