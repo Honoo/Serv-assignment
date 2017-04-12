@@ -1,3 +1,4 @@
+// Calendar is assumed to be for the current month.
 angular.module('calendarModule',[])
 .directive('calendar',function(){
   return {

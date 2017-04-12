@@ -51,7 +51,7 @@ angular.module('facilitiesModule.availability')
     return timeslots.spaces[location][date];
   }
 
-  // Duration should be an integer representing hours
+  // Duration is assumed only to be in discrete hours (integers).
   timeslots.bookSlot = function(location, year, month, day, time, duration){
     var date = timeslots.createDateFormat(year, month, day);
     time = parseInt(time);
