@@ -38,7 +38,11 @@ angular.module('facilitiesModule.availability')
 
   // Duration should be an integer representing hours
   timeslots.bookSlot = function(location, year, month, day, time, duration){
-    if(time < timeslots.startTime || time >= timeslots.endTime){
+    var date = timeslots.createDateFormat(year, month, day);
+    time = parseInt(time);
+    duration = parseInt(duration);
+
+    if(time < timeslots.startTime || time+duration > timeslots.endTime){
       return false;
     }
 
@@ -47,13 +51,22 @@ angular.module('facilitiesModule.availability')
     }
 
     for(i = time; i < time+duration; i++){
-      if(timeslots.isSlotBooked(location, year, month, day, time)){
+      if(location == 'full' && (timeslots.isSlotBooked('spaceA', year, month, day, i) || timeslots.isSlotBooked('spaceB', year, month, day, i))){
+        return false;
+      }
+      else if(location != 'full' && timeslots.isSlotBooked(location, year, month, day, i)){
         return false;
       }
     }
 
     for(i = time; i < time+duration; i++){
-      timeslots.spaces[location][date][time] = true;
+      if(location == 'full'){
+        timeslots.spaces['spaceA'][date][i] = true;
+        timeslots.spaces['spaceB'][date][i] = true;
+      }
+      else {
+        timeslots.spaces[location][date][i] = true;
+      }
     }
 
     return true;

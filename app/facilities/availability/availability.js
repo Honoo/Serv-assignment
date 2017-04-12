@@ -6,18 +6,16 @@ angular.module('facilitiesModule.availability',[])
   }
 })
 .controller("AvailabilityController", ['$scope', 'availabilityFactory', function($scope, availabilityFactory){
+  $scope.locations = ['roomA', 'roomB', 'spaceA', 'spaceB', 'full', 'court'];
+
   $scope.display = {
     availability: true,
-    roomA: false,
-    roomB: false,
-    spaceA: false,
-    spaceB: false,
-    full: false,
-    court: false
+    booking: {}
   };
 
-  $scope.toggleDisplay = function(type){
-    $scope.display[type] = !$scope.display[type];
+  for(item in $scope.locations){
+    $scope.display[item] = false;
+    $scope.display.booking[item] = false;
   }
 
   $scope.year = 2017;
@@ -34,4 +32,6 @@ angular.module('facilitiesModule.availability',[])
   }
 
   $scope.timeslots = availabilityFactory.spaces;
+  $scope.bookSlot = availabilityFactory.bookSlot;
+  $scope.durations = {};
 }]);
